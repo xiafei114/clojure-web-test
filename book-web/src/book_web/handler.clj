@@ -8,7 +8,9 @@
             [book-web.routes.home :refer [home-routes]]))
 
 (defn init []
-  (println "book-web is starting"))
+  (println "book-web is starting")
+  (if-not (.exists (java.io.File. "./db.sq3"))
+    (db/create-guestbook-table)))
 
 (defn destroy []
   (println "book-web is shutting down"))
