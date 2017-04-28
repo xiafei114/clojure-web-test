@@ -1,11 +1,12 @@
 (ns book-web.handler
-  (:require [compojure.core :refer [defroutes routes]]
-            [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.file-info :refer [wrap-file-info]]
-            [hiccup.middleware :refer [wrap-base-url]]
-            [compojure.handler :as handler]
+  (:use compojure.core
+        ring.middleware.resource
+        ring.middleware.file-info
+        hiccup.middleware
+        book-web.routes.home)
+  (:require [compojure.handler :as handler]
             [compojure.route :as route]
-            [book-web.routes.home :refer [home-routes]]))
+            [book-web.models.db :as db]))
 
 (defn init []
   (println "book-web is starting")
